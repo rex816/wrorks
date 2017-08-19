@@ -1,0 +1,195 @@
+{
+  "info": {
+    "title": "Demo API 文档",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/v1",
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Demo",
+      "description": "Demo相关API"
+    }
+  ],
+  "definitions": {
+    "SuccessResult": {
+      "type": "object",
+      "required": [
+        "success"
+      ],
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "操作成功时，该值为 `true`"
+        }
+      },
+      "example": {
+        "success": true
+      }
+    },
+    "FailureResult": {
+      "type": "object",
+      "required": [
+        "success",
+        "message"
+      ],
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "操作失败时，该值为 `false`"
+        },
+        "message": {
+          "type": "string",
+          "description": "错误消息"
+        }
+      },
+      "example": {
+        "success": false,
+        "message": "错误消息"
+      }
+    },
+    "PostRequest": {
+      "type": "object",
+      "required": [
+        "name",
+        "age",
+        "from"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "昵称"
+        },
+        "age": {
+          "type": "number",
+          "description": "年龄"
+        },
+        "from": {
+          "type": "string",
+          "description": "国籍"
+        }
+      },
+      "example": {
+        "name": "Jessica",
+        "age": 25,
+        "from": "Korea"
+      }
+    }
+  },
+  "swagger": "2.0",
+  "paths": {
+    "/demo/{id}": {
+      "get": {
+        "tags": [
+          "Demo"
+        ],
+        "summary": "API - GET",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "操作成功说明"
+          },
+          "default": {
+            "description": "操作失败说明",
+            "schema": {
+              "$ref": "#/definitions/FailureResult"
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Demo"
+        ],
+        "summary": "API - PUT",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "操作成功说明"
+          },
+          "default": {
+            "description": "操作失败说明",
+            "schema": {
+              "$ref": "#/definitions/FailureResult"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Demo"
+        ],
+        "summary": "API - DELETE",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "操作成功说明"
+          },
+          "default": {
+            "description": "操作失败说明",
+            "schema": {
+              "$ref": "#/definitions/FailureResult"
+            }
+          }
+        }
+      }
+    },
+    "/demo": {
+      "post": {
+        "tags": [
+          "Demo"
+        ],
+        "summary": "API - POST",
+        "parameters": [
+          {
+            "name": "parameterName",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "操作成功说明"
+          },
+          "default": {
+            "description": "操作失败说明",
+            "schema": {
+              "$ref": "#/definitions/FailureResult"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {}
+}

@@ -1,0 +1,3 @@
+# eslint需要忽略的文件夹或文件
+/src/externals/taobao/**
+/src/externals/test.js
